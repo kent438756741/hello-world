@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mozi.mybatis.mapper.EdsLisMainMapper">
+  <resultMap id="BaseResultMap" type="com.mozi.mybatis.modal.EdsLisMain">
+    <id column="LIS_ID" jdbcType="DECIMAL" property="lisId" />
+    <result column="PATIENT_ID" jdbcType="DECIMAL" property="patientId" />
+    <result column="MEDICAL_RECORD_NO" jdbcType="VARCHAR" property="medicalRecordNo" />
+    <result column="VISIT_CARD_NO" jdbcType="VARCHAR" property="visitCardNo" />
+    <result column="INPATIENT_NO" jdbcType="VARCHAR" property="inpatientNo" />
+    <result column="INPATIENT_TIME" jdbcType="TIMESTAMP" property="inpatientTime" />
+    <result column="INSPECTION_ID" jdbcType="VARCHAR" property="inspectionId" />
+    <result column="ITEM_PROJECT_NAME" jdbcType="VARCHAR" property="itemProjectName" />
+    <result column="LAB_NAME" jdbcType="VARCHAR" property="labName" />
+    <result column="SUB_ITEM" jdbcType="VARCHAR" property="subItem" />
+    <result column="INSPECT_DEPARTMENT_NAME" jdbcType="VARCHAR" property="inspectDepartmentName" />
+    <result column="INSPECT_DOCTOR_NAME" jdbcType="VARCHAR" property="inspectDoctorName" />
+    <result column="BILLING_DOCTOR_NAME" jdbcType="VARCHAR" property="billingDoctorName" />
+    <result column="BILLING_DEPARTMENT_NAME" jdbcType="VARCHAR" property="billingDepartmentName" />
+    <result column="INSPECT_TIME" jdbcType="TIMESTAMP" property="inspectTime" />
+    <result column="REPORT_TIME" jdbcType="TIMESTAMP" property="reportTime" />
+    <result column="BILLING_TIME" jdbcType="TIMESTAMP" property="billingTime" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="DATA_STATUS" jdbcType="VARCHAR" property="dataStatus" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="MODIFY_BY" jdbcType="VARCHAR" property="modifyBy" />
+    <result column="VOIDED_DATE" jdbcType="TIMESTAMP" property="voidedDate" />
+    <result column="VOIDED_BY" jdbcType="VARCHAR" property="voidedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LIS_ID, PATIENT_ID, MEDICAL_RECORD_NO, VISIT_CARD_NO, INPATIENT_NO, INPATIENT_TIME, 
+    INSPECTION_ID, ITEM_PROJECT_NAME, LAB_NAME, SUB_ITEM, INSPECT_DEPARTMENT_NAME, INSPECT_DOCTOR_NAME, 
+    BILLING_DOCTOR_NAME, BILLING_DEPARTMENT_NAME, INSPECT_TIME, REPORT_TIME, BILLING_TIME, 
+    STATUS, DATA_STATUS, CREATE_DATE, CREATOR, UPDATE_DATE, MODIFY_BY, VOIDED_DATE, VOIDED_BY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EDS_LIS_MAIN
+    where LIS_ID = #{lisId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from EDS_LIS_MAIN
+    where LIS_ID = #{lisId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.mozi.mybatis.modal.EdsLisMain">
+    insert into EDS_LIS_MAIN (LIS_ID, PATIENT_ID, MEDICAL_RECORD_NO, 
+      VISIT_CARD_NO, INPATIENT_NO, INPATIENT_TIME, 
+      INSPECTION_ID, ITEM_PROJECT_NAME, LAB_NAME, 
+      SUB_ITEM, INSPECT_DEPARTMENT_NAME, INSPECT_DOCTOR_NAME, 
+      BILLING_DOCTOR_NAME, BILLING_DEPARTMENT_NAME, 
+      INSPECT_TIME, REPORT_TIME, BILLING_TIME, 
+      STATUS, DATA_STATUS, CREATE_DATE, 
+      CREATOR, UPDATE_DATE, MODIFY_BY, 
+      VOIDED_DATE, VOIDED_BY)
+    values (#{lisId,jdbcType=DECIMAL}, #{patientId,jdbcType=DECIMAL}, #{medicalRecordNo,jdbcType=VARCHAR}, 
+      #{visitCardNo,jdbcType=VARCHAR}, #{inpatientNo,jdbcType=VARCHAR}, #{inpatientTime,jdbcType=TIMESTAMP}, 
+      #{inspectionId,jdbcType=VARCHAR}, #{itemProjectName,jdbcType=VARCHAR}, #{labName,jdbcType=VARCHAR}, 
+      #{subItem,jdbcType=VARCHAR}, #{inspectDepartmentName,jdbcType=VARCHAR}, #{inspectDoctorName,jdbcType=VARCHAR}, 
+      #{billingDoctorName,jdbcType=VARCHAR}, #{billingDepartmentName,jdbcType=VARCHAR}, 
+      #{inspectTime,jdbcType=TIMESTAMP}, #{reportTime,jdbcType=TIMESTAMP}, #{billingTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{dataStatus,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=VARCHAR}, 
+      #{voidedDate,jdbcType=TIMESTAMP}, #{voidedBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mozi.mybatis.modal.EdsLisMain">
+    insert into EDS_LIS_MAIN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lisId != null">
+        LIS_ID,
+      </if>
+      <if test="patientId != null">
+        PATIENT_ID,
+      </if>
+      <if test="medicalRecordNo != null">
+        MEDICAL_RECORD_NO,
+      </if>
+      <if test="visitCardNo != null">
+        VISIT_CARD_NO,
+      </if>
+      <if test="inpatientNo != null">
+        INPATIENT_NO,
+      </if>
+      <if test="inpatientTime != null">
+        INPATIENT_TIME,
+      </if>
+      <if test="inspectionId != null">
+        INSPECTION_ID,
+      </if>
+      <if test="itemProjectName != null">
+        ITEM_PROJECT_NAME,
+      </if>
+      <if test="labName != null">
+        LAB_NAME,
+      </if>
+      <if test="subItem != null">
+        SUB_ITEM,
+      </if>
+      <if test="inspectDepartmentName != null">
+        INSPECT_DEPARTMENT_NAME,
+      </if>
+      <if test="inspectDoctorName != null">
+        INSPECT_DOCTOR_NAME,
+      </if>
+      <if test="billingDoctorName != null">
+        BILLING_DOCTOR_NAME,
+      </if>
+      <if test="billingDepartmentName != null">
+        BILLING_DEPARTMENT_NAME,
+      </if>
+      <if test="inspectTime != null">
+        INSPECT_TIME,
+      </if>
+      <if test="reportTime != null">
+        REPORT_TIME,
+      </if>
+      <if test="billingTime != null">
+        BILLING_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="dataStatus != null">
+        DATA_STATUS,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="modifyBy != null">
+        MODIFY_BY,
+      </if>
+      <if test="voidedDate != null">
+        VOIDED_DATE,
+      </if>
+      <if test="voidedBy != null">
+        VOIDED_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lisId != null">
+        #{lisId,jdbcType=DECIMAL},
+      </if>
+      <if test="patientId != null">
+        #{patientId,jdbcType=DECIMAL},
+      </if>
+      <if test="medicalRecordNo != null">
+        #{medicalRecordNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitCardNo != null">
+        #{visitCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientNo != null">
+        #{inpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientTime != null">
+        #{inpatientTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inspectionId != null">
+        #{inspectionId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemProjectName != null">
+        #{itemProjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="labName != null">
+        #{labName,jdbcType=VARCHAR},
+      </if>
+      <if test="subItem != null">
+        #{subItem,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectDepartmentName != null">
+        #{inspectDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectDoctorName != null">
+        #{inspectDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="billingDoctorName != null">
+        #{billingDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="billingDepartmentName != null">
+        #{billingDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectTime != null">
+        #{inspectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportTime != null">
+        #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billingTime != null">
+        #{billingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null">
+        #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null">
+        #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="voidedDate != null">
+        #{voidedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voidedBy != null">
+        #{voidedBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mozi.mybatis.modal.EdsLisMain">
+    update EDS_LIS_MAIN
+    <set>
+      <if test="patientId != null">
+        PATIENT_ID = #{patientId,jdbcType=DECIMAL},
+      </if>
+      <if test="medicalRecordNo != null">
+        MEDICAL_RECORD_NO = #{medicalRecordNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitCardNo != null">
+        VISIT_CARD_NO = #{visitCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientNo != null">
+        INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR},
+      </if>
+      <if test="inpatientTime != null">
+        INPATIENT_TIME = #{inpatientTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inspectionId != null">
+        INSPECTION_ID = #{inspectionId,jdbcType=VARCHAR},
+      </if>
+      <if test="itemProjectName != null">
+        ITEM_PROJECT_NAME = #{itemProjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="labName != null">
+        LAB_NAME = #{labName,jdbcType=VARCHAR},
+      </if>
+      <if test="subItem != null">
+        SUB_ITEM = #{subItem,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectDepartmentName != null">
+        INSPECT_DEPARTMENT_NAME = #{inspectDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectDoctorName != null">
+        INSPECT_DOCTOR_NAME = #{inspectDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="billingDoctorName != null">
+        BILLING_DOCTOR_NAME = #{billingDoctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="billingDepartmentName != null">
+        BILLING_DEPARTMENT_NAME = #{billingDepartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectTime != null">
+        INSPECT_TIME = #{inspectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportTime != null">
+        REPORT_TIME = #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billingTime != null">
+        BILLING_TIME = #{billingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null">
+        DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null">
+        MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="voidedDate != null">
+        VOIDED_DATE = #{voidedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voidedBy != null">
+        VOIDED_BY = #{voidedBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LIS_ID = #{lisId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mozi.mybatis.modal.EdsLisMain">
+    update EDS_LIS_MAIN
+    set PATIENT_ID = #{patientId,jdbcType=DECIMAL},
+      MEDICAL_RECORD_NO = #{medicalRecordNo,jdbcType=VARCHAR},
+      VISIT_CARD_NO = #{visitCardNo,jdbcType=VARCHAR},
+      INPATIENT_NO = #{inpatientNo,jdbcType=VARCHAR},
+      INPATIENT_TIME = #{inpatientTime,jdbcType=TIMESTAMP},
+      INSPECTION_ID = #{inspectionId,jdbcType=VARCHAR},
+      ITEM_PROJECT_NAME = #{itemProjectName,jdbcType=VARCHAR},
+      LAB_NAME = #{labName,jdbcType=VARCHAR},
+      SUB_ITEM = #{subItem,jdbcType=VARCHAR},
+      INSPECT_DEPARTMENT_NAME = #{inspectDepartmentName,jdbcType=VARCHAR},
+      INSPECT_DOCTOR_NAME = #{inspectDoctorName,jdbcType=VARCHAR},
+      BILLING_DOCTOR_NAME = #{billingDoctorName,jdbcType=VARCHAR},
+      BILLING_DEPARTMENT_NAME = #{billingDepartmentName,jdbcType=VARCHAR},
+      INSPECT_TIME = #{inspectTime,jdbcType=TIMESTAMP},
+      REPORT_TIME = #{reportTime,jdbcType=TIMESTAMP},
+      BILLING_TIME = #{billingTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+      VOIDED_DATE = #{voidedDate,jdbcType=TIMESTAMP},
+      VOIDED_BY = #{voidedBy,jdbcType=VARCHAR}
+    where LIS_ID = #{lisId,jdbcType=DECIMAL}
+  </update>
+</mapper>

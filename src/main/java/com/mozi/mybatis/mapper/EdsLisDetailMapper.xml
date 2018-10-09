@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mozi.mybatis.mapper.EdsLisDetailMapper">
+  <resultMap id="BaseResultMap" type="com.mozi.mybatis.modal.EdsLisDetail">
+    <id column="LIS_DETAIL_ID" jdbcType="DECIMAL" property="lisDetailId" />
+    <result column="LIS_ID" jdbcType="DECIMAL" property="lisId" />
+    <result column="ITEM_NAME" jdbcType="VARCHAR" property="itemName" />
+    <result column="ITEM_NAME_EN" jdbcType="VARCHAR" property="itemNameEn" />
+    <result column="TEST_RESULT" jdbcType="VARCHAR" property="testResult" />
+    <result column="UNIT" jdbcType="VARCHAR" property="unit" />
+    <result column="REFER_RANGE" jdbcType="VARCHAR" property="referRange" />
+    <result column="QUA_RESULT" jdbcType="VARCHAR" property="quaResult" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="DATA_STATUS" jdbcType="VARCHAR" property="dataStatus" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="MODIFY_BY" jdbcType="VARCHAR" property="modifyBy" />
+    <result column="VOIDED_DATE" jdbcType="TIMESTAMP" property="voidedDate" />
+    <result column="VOIDED_BY" jdbcType="VARCHAR" property="voidedBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LIS_DETAIL_ID, LIS_ID, ITEM_NAME, ITEM_NAME_EN, TEST_RESULT, UNIT, REFER_RANGE, QUA_RESULT, 
+    REMARK, DATA_STATUS, CREATE_DATE, CREATOR, UPDATE_DATE, MODIFY_BY, VOIDED_DATE, VOIDED_BY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EDS_LIS_DETAIL
+    where LIS_DETAIL_ID = #{lisDetailId,jdbcType=DECIMAL}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from EDS_LIS_DETAIL
+    where LIS_DETAIL_ID = #{lisDetailId,jdbcType=DECIMAL}
+  </delete>
+  
+  <insert id="insert" parameterType="com.mozi.mybatis.modal.EdsLisDetail">
+    insert into EDS_LIS_DETAIL (LIS_DETAIL_ID, LIS_ID, ITEM_NAME, 
+      ITEM_NAME_EN, TEST_RESULT, UNIT, 
+      REFER_RANGE, QUA_RESULT, REMARK, 
+      DATA_STATUS, CREATE_DATE, CREATOR, 
+      UPDATE_DATE, MODIFY_BY, VOIDED_DATE, 
+      VOIDED_BY)
+    values (#{lisDetailId,jdbcType=DECIMAL}, #{lisId,jdbcType=DECIMAL}, #{itemName,jdbcType=VARCHAR}, 
+      #{itemNameEn,jdbcType=VARCHAR}, #{testResult,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, 
+      #{referRange,jdbcType=VARCHAR}, #{quaResult,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{dataStatus,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=VARCHAR}, #{voidedDate,jdbcType=TIMESTAMP}, 
+      #{voidedBy,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.mozi.mybatis.modal.EdsLisDetail">
+    insert into EDS_LIS_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lisDetailId != null">
+        LIS_DETAIL_ID,
+      </if>
+      <if test="lisId != null">
+        LIS_ID,
+      </if>
+      <if test="itemName != null">
+        ITEM_NAME,
+      </if>
+      <if test="itemNameEn != null">
+        ITEM_NAME_EN,
+      </if>
+      <if test="testResult != null">
+        TEST_RESULT,
+      </if>
+      <if test="unit != null">
+        UNIT,
+      </if>
+      <if test="referRange != null">
+        REFER_RANGE,
+      </if>
+      <if test="quaResult != null">
+        QUA_RESULT,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="dataStatus != null">
+        DATA_STATUS,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="modifyBy != null">
+        MODIFY_BY,
+      </if>
+      <if test="voidedDate != null">
+        VOIDED_DATE,
+      </if>
+      <if test="voidedBy != null">
+        VOIDED_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lisDetailId != null">
+        #{lisDetailId,jdbcType=DECIMAL},
+      </if>
+      <if test="lisId != null">
+        #{lisId,jdbcType=DECIMAL},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNameEn != null">
+        #{itemNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="testResult != null">
+        #{testResult,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="referRange != null">
+        #{referRange,jdbcType=VARCHAR},
+      </if>
+      <if test="quaResult != null">
+        #{quaResult,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null">
+        #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null">
+        #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="voidedDate != null">
+        #{voidedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voidedBy != null">
+        #{voidedBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.mozi.mybatis.modal.EdsLisDetail">
+    update EDS_LIS_DETAIL
+    <set>
+      <if test="lisId != null">
+        LIS_ID = #{lisId,jdbcType=DECIMAL},
+      </if>
+      <if test="itemName != null">
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemNameEn != null">
+        ITEM_NAME_EN = #{itemNameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="testResult != null">
+        TEST_RESULT = #{testResult,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        UNIT = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="referRange != null">
+        REFER_RANGE = #{referRange,jdbcType=VARCHAR},
+      </if>
+      <if test="quaResult != null">
+        QUA_RESULT = #{quaResult,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="dataStatus != null">
+        DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null">
+        MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="voidedDate != null">
+        VOIDED_DATE = #{voidedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voidedBy != null">
+        VOIDED_BY = #{voidedBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LIS_DETAIL_ID = #{lisDetailId,jdbcType=DECIMAL}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.mozi.mybatis.modal.EdsLisDetail">
+    update EDS_LIS_DETAIL
+    set LIS_ID = #{lisId,jdbcType=DECIMAL},
+      ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_NAME_EN = #{itemNameEn,jdbcType=VARCHAR},
+      TEST_RESULT = #{testResult,jdbcType=VARCHAR},
+      UNIT = #{unit,jdbcType=VARCHAR},
+      REFER_RANGE = #{referRange,jdbcType=VARCHAR},
+      QUA_RESULT = #{quaResult,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+      VOIDED_DATE = #{voidedDate,jdbcType=TIMESTAMP},
+      VOIDED_BY = #{voidedBy,jdbcType=VARCHAR}
+    where LIS_DETAIL_ID = #{lisDetailId,jdbcType=DECIMAL}
+  </update>
+  
+</mapper>

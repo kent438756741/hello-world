@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mozi.mybatis.mapper.EdsPatientMapper">
+
+  <resultMap id="BaseResultMap" type="com.mozi.mybatis.modal.EdsPatient">
+    <id column="PATIENT_ID" jdbcType="INTEGER" property="patientId" />
+    <result column="ID_CARD" jdbcType="VARCHAR" property="idCard" />
+    <result column="PATIENT_NAME" jdbcType="CHAR" property="patientName" />
+    <result column="HEALTY_CARD_ID" jdbcType="VARCHAR" property="healtyCardId" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="GENDER" jdbcType="VARCHAR" property="gender" />
+    <result column="BIRTH" jdbcType="TIMESTAMP" property="birth" />
+    <result column="DATA_STATUS" jdbcType="VARCHAR" property="dataStatus" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="CREATOR" jdbcType="VARCHAR" property="creator" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="MODIFY_BY" jdbcType="VARCHAR" property="modifyBy" />
+    <result column="VOIDED_DATE" jdbcType="TIMESTAMP" property="voidedDate" />
+    <result column="VOIDED_BY" jdbcType="VARCHAR" property="voidedBy" />
+  </resultMap>
+  
+  <resultMap id="TestResultMap" type="java.util.HashMap">
+    <id column="PATIENT_ID" jdbcType="INTEGER" property="patientId" />
+    <result column="ID_CARD" jdbcType="VARCHAR" property="idCard" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    PATIENT_ID, ID_CARD, PATIENT_NAME, HEALTY_CARD_ID, STATUS, GENDER, BIRTH, DATA_STATUS, 
+    CREATE_DATE, CREATOR, UPDATE_DATE, MODIFY_BY, VOIDED_DATE, VOIDED_BY
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EDS_PATIENT
+    where PATIENT_ID = #{patientId}
+  </select>
+  
+  <!-- 查询所有数据 -->
+  <select id="selectAll" resultType="java.util.HashMap">
+    select 
+      PATIENT_ID,ID_CARD,to_char(CREATE_DATE,'yyyy-mm-dd') as CREATE_DATE
+    from EDS_PATIENT
+  </select>
+  
+  <select id="selectMap" resultMap="TestResultMap">
+  	select 
+      PATIENT_ID,ID_CARD,CREATE_DATE
+    from EDS_PATIENT
+  </select>
+  
+  <!-- 根据patientName模糊查询 -->
+  <select id="selectByPatientName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> 
+  	from EDS_PATIENT
+  	where PATIENT_NAME like #{name}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from EDS_PATIENT
+    where PATIENT_ID = #{patientId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.mozi.mybatis.modal.EdsPatient">
+    insert into EDS_PATIENT (PATIENT_ID, ID_CARD, PATIENT_NAME, 
+      HEALTY_CARD_ID, STATUS, GENDER, 
+      BIRTH, DATA_STATUS, CREATE_DATE, 
+      CREATOR, UPDATE_DATE, MODIFY_BY, 
+      VOIDED_DATE, VOIDED_BY)
+    values (#{patientId,jdbcType=INTEGER}, #{idCard,jdbcType=VARCHAR}, #{patientName,jdbcType=CHAR}, 
+      #{healtyCardId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{birth,jdbcType=TIMESTAMP}, #{dataStatus,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=VARCHAR}, 
+      #{voidedDate,jdbcType=TIMESTAMP}, #{voidedBy,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.mozi.mybatis.modal.EdsPatient">
+    insert into EDS_PATIENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="patientId != null">
+        PATIENT_ID,
+      </if>
+      <if test="idCard != null">
+        ID_CARD,
+      </if>
+      <if test="patientName != null">
+        PATIENT_NAME,
+      </if>
+      <if test="healtyCardId != null">
+        HEALTY_CARD_ID,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="gender != null">
+        GENDER,
+      </if>
+      <if test="birth != null">
+        BIRTH,
+      </if>
+      <if test="dataStatus != null">
+        DATA_STATUS,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="creator != null">
+        CREATOR,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="modifyBy != null">
+        MODIFY_BY,
+      </if>
+      <if test="voidedDate != null">
+        VOIDED_DATE,
+      </if>
+      <if test="voidedBy != null">
+        VOIDED_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="patientId != null">
+        #{patientId,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="patientName != null">
+        #{patientName,jdbcType=CHAR},
+      </if>
+      <if test="healtyCardId != null">
+        #{healtyCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataStatus != null">
+        #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null">
+        #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="voidedDate != null">
+        #{voidedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voidedBy != null">
+        #{voidedBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.mozi.mybatis.modal.EdsPatient">
+    update EDS_PATIENT
+    <set>
+      <if test="idCard != null">
+        ID_CARD = #{idCard,jdbcType=INTEGER},
+      </if>
+      <if test="patientName != null">
+        PATIENT_NAME = #{patientName,jdbcType=CHAR},
+      </if>
+      <if test="healtyCardId != null">
+        HEALTY_CARD_ID = #{healtyCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        GENDER = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        BIRTH = #{birth,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataStatus != null">
+        DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        CREATOR = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null">
+        MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="voidedDate != null">
+        VOIDED_DATE = #{voidedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="voidedBy != null">
+        VOIDED_BY = #{voidedBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PATIENT_ID = #{patientId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.mozi.mybatis.modal.EdsPatient">
+    update EDS_PATIENT
+    set ID_CARD = #{idCard,jdbcType=VARCHAR},
+      PATIENT_NAME = #{patientName,jdbcType=CHAR},
+      HEALTY_CARD_ID = #{healtyCardId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=VARCHAR},
+      BIRTH = #{birth,jdbcType=TIMESTAMP},
+      DATA_STATUS = #{dataStatus,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATOR = #{creator,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      MODIFY_BY = #{modifyBy,jdbcType=VARCHAR},
+      VOIDED_DATE = #{voidedDate,jdbcType=TIMESTAMP},
+      VOIDED_BY = #{voidedBy,jdbcType=VARCHAR}
+    where PATIENT_ID = #{patientId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>
